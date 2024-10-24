@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -47,6 +46,7 @@ function CreateIncomes({ refreshData }: { refreshData: () => void }) {
       toast("New Income Source Created!");
     }
   };
+
   return (
     <div>
       <Dialog>

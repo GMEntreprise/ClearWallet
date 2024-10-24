@@ -11,7 +11,6 @@ import { Budgets, Expenses } from "../../../../../../utils/schema";
 type Budget = {
   totalSpend?: number;
   totalItem?: number;
-  id: string; // Change this from number to string
   name: string;
   amount: string;
   icon: string | null;

@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
     }
   },
   "include": [
@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "utils/dbConfig.jsx",
+    "utils/dbConfig.tsx",
     "utils/schema.jsx"
   ],
   "exclude": ["node_modules"]
