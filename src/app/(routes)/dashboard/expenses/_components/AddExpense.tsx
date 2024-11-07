@@ -14,7 +14,7 @@ interface AddExpenseProps {
   refreshData: () => void;
 }
 
-function AddExpense({ budgetId, user, refreshData }: AddExpenseProps) {
+function AddExpense({ budgetId, refreshData }: AddExpenseProps) {
   const [name, setName] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const [loading, setLoading] = useState(false);
@@ -44,19 +44,19 @@ function AddExpense({ budgetId, user, refreshData }: AddExpenseProps) {
   };
   return (
     <div className="border p-5 rounded-2xl">
-      <h2 className="font-bold text-lg">Add Expense</h2>
+      <h2 className="font-bold text-lg">Ajouter une dépense</h2>
       <div className="mt-2">
-        <h2 className="text-black font-medium my-1">Expense Name</h2>
+        <h2 className="text-black font-medium my-1">Nom de la dépense</h2>
         <Input
-          placeholder="e.g. Bedroom Decor"
+          placeholder="Ex : Décoration de la chambre"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="mt-2">
-        <h2 className="text-black font-medium my-1">Expense Amount</h2>
+        <h2 className="text-black font-medium my-1">Montant de la dépense</h2>
         <Input
-          placeholder="e.g. 1000"
+          placeholder="Ex : 1000"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
@@ -66,7 +66,7 @@ function AddExpense({ budgetId, user, refreshData }: AddExpenseProps) {
         onClick={() => addNewExpense()}
         className="mt-3 w-full rounded-full"
       >
-        {loading ? <Loader className="animate-spin" /> : "Add New Expense"}
+        {loading ? <Loader className="animate-spin" /> : "Ajouter la dépense"}
       </Button>
     </div>
   );

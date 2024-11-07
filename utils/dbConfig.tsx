@@ -1,15 +1,18 @@
-"use server";
+
 
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "./schema";
 import { neon } from "@neondatabase/serverless";
 
-const databaseUrl = process.env.NEXT_PUBLIC_DATABASE_URL;
+const databaseUrl =
+  "postgresql://clearwalletdb_owner:t3YlZ0LHAfdN@ep-shiny-darkness-a8wvro9h.eastus2.azure.neon.tech/clearwalletdb?sslmode=require";
 
 if (!databaseUrl) {
   throw new Error("NEXT_PUBLIC_DATABASE_URL is not defined");
 }
+const sql = neon(
+  "postgresql://clearwalletdb_owner:t3YlZ0LHAfdN@ep-shiny-darkness-a8wvro9h.eastus2.azure.neon.tech/clearwalletdb?sslmode=require"
+);
 
-const sql = neon(databaseUrl);
 
 export const db = drizzle(sql, { schema });

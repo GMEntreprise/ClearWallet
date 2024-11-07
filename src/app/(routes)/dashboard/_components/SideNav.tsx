@@ -14,47 +14,48 @@ function SideNav() {
   const menuList = [
     {
       id: 1,
-      name: "Dashboard",
+      name: "Tableau de bord",
       icon: LayoutGrid,
       path: "/dashboard",
     },
     {
       id: 2,
-      name: "Incomes",
+      name: "Revenus",
       icon: CircleDollarSign,
       path: "/dashboard/incomes",
     },
     {
-      id: 2,
+      id: 3,
       name: "Budgets",
       icon: PiggyBank,
       path: "/dashboard/budgets",
     },
     {
-      id: 3,
-      name: "Expenses",
+      id: 4,
+      name: "Dépenses",
       icon: ReceiptText,
       path: "/dashboard/expenses",
     },
     // {
-    //   id: 2,
-    //   name: "Investments",
+    //   id: 5,
+    //   name: "Investissements",
     //   icon: TrendingUp,
     //   path: "/dashboard/investments",
     // },
     // {
-    //   id: 2,
-    //   name: "Debts",
+    //   id: 6,
+    //   name: "Dettes",
     //   icon: TrendingDownIcon,
     //   path: "/dashboard/debts",
     // },
     {
-      id: 4,
-      name: "Upgrade",
+      id: 5,
+      name: "Améliorations",
       icon: ShieldCheck,
       path: "/dashboard/upgrade",
     },
   ];
+
   const path = usePathname();
 
   useEffect(() => {
@@ -68,8 +69,10 @@ function SideNav() {
         height={100}
         /> */}
       <div className="flex flex-row items-center">
-        <Image src={"/clearwallet.png"} alt="logo" width={40} height={25} />
-        <span className="text-blue-800 font-bold text-xl">ClearWallet</span>
+        <Link href="/" className="flex flex-row items-center">
+          <Image src={"./chart-donut.svg"} alt="logo" width={40} height={25} />
+          <span className="text-blue-800 font-bold text-xl">ClearWallet</span>
+        </Link>
       </div>
       <div className="mt-5">
         {menuList.map((menu, index) => (

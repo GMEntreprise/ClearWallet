@@ -1,6 +1,5 @@
 "use client";
-import { db } from "@/utils/dbConfig";
-import { Budgets, Expenses } from "@/utils/schema";
+
 import { useUser } from "@clerk/nextjs";
 import { desc, eq, getTableColumns, sql } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
@@ -23,6 +22,8 @@ import {
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import EditBudget from "../_components/EditBudget";
+import { Budgets, Expenses } from "../../../../../../utils/schema";
+import { db } from "../../../../../../utils/dbConfig";
 
 function ExpensesScreen({ params }) {
   const { user } = useUser();
@@ -30,11 +31,13 @@ function ExpensesScreen({ params }) {
   const [expensesList, setExpensesList] = useState([]);
   const route = useRouter();
   useEffect(() => {
-    user && getBudgetInfo();
+    if (user) {
+      getBudgetInfo();
+    }
   }, [user]);
 
   /**
-   * Get Budget Information
+   * Récupérer les informations du budget
    */
   const getBudgetInfo = async () => {
     const result = await db
@@ -54,7 +57,7 @@ function ExpensesScreen({ params }) {
   };
 
   /**
-   * Get Latest Expenses
+   * Récupérer les dernières dépenses
    */
   const getExpensesList = async () => {
     const result = await db
@@ -67,7 +70,7 @@ function ExpensesScreen({ params }) {
   };
 
   /**
-   * Used to Delete budget
+   * Supprimer un budget
    */
   const deleteBudget = async () => {
     const deleteExpenseResult = await db
@@ -81,7 +84,7 @@ function ExpensesScreen({ params }) {
         .where(eq(Budgets.id, params.id))
         .returning();
     }
-    toast("Budget Deleted !");
+    toast("Budget supprimé avec succès !");
     route.replace("/dashboard/budgets");
   };
 
@@ -90,7 +93,7 @@ function ExpensesScreen({ params }) {
       <h2 className="text-2xl font-bold gap-2 flex justify-between items-center">
         <span className="flex gap-2 items-center">
           <ArrowLeft onClick={() => route.back()} className="cursor-pointer" />
-          My Expenses
+          Mes Dépenses
         </span>
         <div className="flex gap-2 items-center">
           <EditBudget
@@ -101,22 +104,24 @@ function ExpensesScreen({ params }) {
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button className="flex gap-2 rounded-full" variant="destructive">
-                <Trash className="w-4" /> Delete
+                <Trash className="w-4" /> Supprimer
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogTitle>
+                  Êtes-vous sûr de vouloir continuer ?
+                </AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your current budget along with expenses and remove your data
-                  from our servers.
+                  Cette action est irréversible. Votre budget ainsi que toutes
+                  les dépenses associées seront définitivement supprimés de
+                  notre plateforme.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel>Annuler</AlertDialogCancel>
                 <AlertDialogAction onClick={() => deleteBudget()}>
-                  Continue
+                  Continuer
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -137,7 +142,7 @@ function ExpensesScreen({ params }) {
         )}
         <AddExpense
           budgetId={params.id}
-          user={user}
+          user={user?.primaryEmailAddress?.emailAddress || ""}
           refreshData={() => getBudgetInfo()}
         />
       </div>

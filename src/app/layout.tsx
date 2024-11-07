@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "ClearWallet",
-  description: "AI powered financial advisor",
+  description: "Votre conseiller financier intelligent, propulsé par l'IA",
 };
 
 export default function RootLayout({

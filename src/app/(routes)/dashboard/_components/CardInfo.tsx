@@ -85,7 +85,7 @@ function CardInfo({ budgetList, incomeList }: CardInfoProps) {
                 <h2 className="text-md ">ClearWallet Smart AI</h2>
                 <Sparkles
                   className="rounded-full text-white w-10 h-10 p-2
-      bg-gradient-to-r
+    bg-gradient-to-r
     from-pink-500
     via-red-500
     to-yellow-500
@@ -101,7 +101,7 @@ function CardInfo({ budgetList, incomeList }: CardInfoProps) {
           <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             <div className="p-7 border rounded-2xl flex items-center justify-between">
               <div>
-                <h2 className="text-sm">Total Budget</h2>
+                <h2 className="text-sm">→ Budget total</h2>
                 <h2 className="font-bold text-2xl">
                   ${formatNumber(totalBudget)}
                 </h2>
@@ -110,7 +110,7 @@ function CardInfo({ budgetList, incomeList }: CardInfoProps) {
             </div>
             <div className="p-7 border rounded-2xl flex items-center justify-between">
               <div>
-                <h2 className="text-sm">Total Spend</h2>
+                <h2 className="text-sm">Dépenses totales</h2>
                 <h2 className="font-bold text-2xl">
                   ${formatNumber(totalSpend)}
                 </h2>
@@ -119,14 +119,14 @@ function CardInfo({ budgetList, incomeList }: CardInfoProps) {
             </div>
             <div className="p-7 border rounded-2xl flex items-center justify-between">
               <div>
-                <h2 className="text-sm">No. Of Budget</h2>
+                <h2 className="text-sm">Nombre de budgets</h2>
                 <h2 className="font-bold text-2xl">{budgetList?.length}</h2>
               </div>
               <Wallet className="bg-blue-800 p-3 h-12 w-12 rounded-full text-white" />
             </div>
             <div className="p-7 border rounded-2xl flex items-center justify-between">
               <div>
-                <h2 className="text-sm">Sum of Income Streams</h2>
+                <h2 className="text-sm">Total des revenus</h2>
                 <h2 className="font-bold text-2xl">
                   ${formatNumber(totalIncome)}
                 </h2>

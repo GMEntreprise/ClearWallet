@@ -8,8 +8,9 @@ const config = {
   schema: "./utils/schema.jsx",
   out: "./drizzle",
   dbCredentials: {
-    url: process.env.NEXT_PUBLIC_DATABASE_URL,
-    connectionString: process.env.NEXT_PUBLIC_DATABASE_URL,
+    url: "postgresql://clearwalletdb_owner:t3YlZ0LHAfdN@ep-shiny-darkness-a8wvro9h.eastus2.azure.neon.tech/clearwalletdb?sslmode=require",
+    connectionString:
+      "postgresql://clearwalletdb_owner:t3YlZ0LHAfdN@ep-shiny-darkness-a8wvro9h.eastus2.azure.neon.tech/clearwalletdb?sslmode=require",
   },
 };
 
