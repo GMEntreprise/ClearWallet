@@ -25,7 +25,7 @@ import EditBudget from "../_components/EditBudget";
 import { Budgets, Expenses } from "../../../../../../utils/schema";
 import { db } from "../../../../../../utils/dbConfig";
 
-function ExpensesScreen({ params }) {
+function ExpensesScreen({ params }: { params: { id: string } }) {
   const { user } = useUser();
   const [budgetInfo, setbudgetInfo] = useState();
   const [expensesList, setExpensesList] = useState([]);
@@ -63,7 +63,7 @@ function ExpensesScreen({ params }) {
     const result = await db
       .select()
       .from(Expenses)
-      .where(eq(Expenses.budgetId, params.id))
+      .where(eq(Expenses.budgetId, Number(params.id)))
       .orderBy(desc(Expenses.id));
     setExpensesList(result);
     console.log(result);
@@ -81,7 +81,7 @@ function ExpensesScreen({ params }) {
     if (deleteExpenseResult) {
       const result = await db
         .delete(Budgets)
-        .where(eq(Budgets.id, params.id))
+        .where(eq(Budgets.id, Number(params.id)))
         .returning();
     }
     toast("Budget supprimé avec succès !");
