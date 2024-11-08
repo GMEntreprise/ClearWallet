@@ -8,6 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+
 interface BudgetItem {
   name: string;
   totalSpend: number;
@@ -29,8 +30,13 @@ function BarChartDashboard({ budgetList }: { budgetList: BudgetItem[] }) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="dépensesTotales" stackId="a" fill="#4845d2" />
-          <Bar dataKey="montant" stackId="a" fill="#C3C2FF" />
+          <Bar
+            dataKey="totalSpend"
+            stackId="a"
+            fill="#4845d2"
+            name="dépensesTotales"
+          />
+          <Bar dataKey="amount" stackId="a" fill="#C3C2FF" name="montant" />
         </BarChart>
       </ResponsiveContainer>
     </div>

@@ -26,7 +26,7 @@ interface AddExpenseProps {
     name: string;
     amount: string;
   };
-  user: string;
+  user?: string;
   refreshData: () => void;
 }
 function EditBudget({ budgetInfo, refreshData }: AddExpenseProps) {

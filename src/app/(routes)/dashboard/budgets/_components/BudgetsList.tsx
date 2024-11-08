@@ -14,6 +14,7 @@ type Budget = {
   name: string;
   amount: string;
   icon: string | null;
+  id: string;
 };
 
 function BudgetList() {
@@ -41,7 +42,12 @@ function BudgetList() {
       .where(eq(Budgets.createdBy, email))
       .groupBy(Budgets.id)
       .orderBy(desc(Budgets.id));
-    setBudgetList(result);
+    setBudgetList(
+      result.map((budget) => ({
+        ...budget,
+        id: String(budget.id),
+      }))
+    );
   };
 
   return (

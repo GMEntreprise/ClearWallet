@@ -7,7 +7,7 @@ import BudgetItem from "../../budgets/_components/BudgetItem";
 import AddExpense from "../_components/AddExpense";
 import ExpenseListTable from "../_components/ExpenseListTable";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Pen, PenBox, Trash } from "lucide-react";
+import { ArrowLeft, Trash } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,7 +25,7 @@ import EditBudget from "../_components/EditBudget";
 import { Budgets, Expenses } from "../../../../../../utils/schema";
 import { db } from "../../../../../../utils/dbConfig";
 
-function ExpensesScreen({ params }: { params: { id: string } }) {
+function ExpensesScreen({ params }: { params: any }) {
   const { user } = useUser();
   const [budgetInfo, setbudgetInfo] = useState();
   const [expensesList, setExpensesList] = useState([]);
@@ -48,8 +48,10 @@ function ExpensesScreen({ params }: { params: { id: string } }) {
       })
       .from(Budgets)
       .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
-      .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
-      .where(eq(Budgets.id, params.id))
+      .where(
+        eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress || "")
+      )
+      .where(eq(Budgets.id, Number(params.id)))
       .groupBy(Budgets.id);
 
     setbudgetInfo(result[0]);
@@ -75,7 +77,7 @@ function ExpensesScreen({ params }: { params: { id: string } }) {
   const deleteBudget = async () => {
     const deleteExpenseResult = await db
       .delete(Expenses)
-      .where(eq(Expenses.budgetId, params.id))
+      .where(eq(Expenses.budgetId, Number(params.id)))
       .returning();
 
     if (deleteExpenseResult) {
@@ -96,10 +98,12 @@ function ExpensesScreen({ params }: { params: { id: string } }) {
           Mes Dépenses
         </span>
         <div className="flex gap-2 items-center">
-          <EditBudget
-            budgetInfo={budgetInfo}
-            refreshData={() => getBudgetInfo()}
-          />
+          {budgetInfo && (
+            <EditBudget
+              budgetInfo={budgetInfo}
+              refreshData={() => getBudgetInfo()}
+            />
+          )}
 
           <AlertDialog>
             <AlertDialogTrigger asChild>

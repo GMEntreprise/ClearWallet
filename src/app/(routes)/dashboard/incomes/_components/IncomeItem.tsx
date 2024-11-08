@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-function IncomeItem({ budget }) {
+function IncomeItem({ budget }: { budget: any }) {
   const calculateProgressPerc = () => {
     const perc = (budget.totalSpend / budget.amount) * 100;
     return perc > 100 ? 100 : perc.toFixed(2);
