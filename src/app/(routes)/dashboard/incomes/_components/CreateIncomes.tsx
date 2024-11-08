@@ -57,12 +57,12 @@ function CreateIncomes({ refreshData }: { refreshData: () => void }) {
             cursor-pointer hover:shadow-md"
           >
             <h2 className="text-3xl">+</h2>
-            <h2>Create New Income Source</h2>
+            <h2>Créer une nouvelle source de revenu</h2>
           </div>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create New Income Source</DialogTitle>
+            <DialogTitle>Créer une nouvelle source de revenu</DialogTitle>
             <DialogDescription>
               <div className="mt-5">
                 <Button
@@ -82,14 +82,18 @@ function CreateIncomes({ refreshData }: { refreshData: () => void }) {
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Source Name</h2>
+                  <h2 className="text-black font-medium my-1">
+                    Nom de la source
+                  </h2>
                   <Input
                     placeholder="e.g. Youtube"
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Montly Amount</h2>
+                  <h2 className="text-black font-medium my-1">
+                    Montant mensuel
+                  </h2>
                   <Input
                     type="number"
                     placeholder="e.g. 5000$"
@@ -106,7 +110,7 @@ function CreateIncomes({ refreshData }: { refreshData: () => void }) {
                 onClick={() => onCreateIncomes()}
                 className="mt-5 w-full rounded-full"
               >
-                Create Income Source
+                Créer la source de revenu
               </Button>
             </DialogClose>
           </DialogFooter>

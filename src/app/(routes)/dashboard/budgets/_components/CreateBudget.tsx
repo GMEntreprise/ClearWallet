@@ -57,12 +57,12 @@ function CreateBudget({ refreshData }: { refreshData: () => void }) {
             cursor-pointer hover:shadow-md"
           >
             <h2 className="text-3xl">+</h2>
-            <h2>Create New Budget</h2>
+            <h2>Créer un nouveau budget</h2>
           </div>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create New Budget</DialogTitle>
+            <DialogTitle>Créer un nouveau budget</DialogTitle>
             <DialogDescription>
               <div className="mt-5">
                 <Button
@@ -82,17 +82,19 @@ function CreateBudget({ refreshData }: { refreshData: () => void }) {
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Budget Name</h2>
+                  <h2 className="text-black font-medium my-1">Nom du budget</h2>
                   <Input
-                    placeholder="e.g. Home Decor"
+                    placeholder="Ex : Décoration intérieure"
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Budget Amount</h2>
+                  <h2 className="text-black font-medium my-1">
+                    Montant du budget
+                  </h2>
                   <Input
                     type="number"
-                    placeholder="e.g. 5000$"
+                    placeholder="Ex : 5000$"
                     onChange={(e) => setAmount(e.target.value)}
                   />
                 </div>
@@ -106,7 +108,7 @@ function CreateBudget({ refreshData }: { refreshData: () => void }) {
                 onClick={() => onCreateBudget()}
                 className="mt-5 w-full rounded-full"
               >
-                Create Budget
+                Créer le budget
               </Button>
             </DialogClose>
           </DialogFooter>
